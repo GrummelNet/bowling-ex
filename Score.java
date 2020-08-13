@@ -46,15 +46,41 @@ class Frame {
 // }
 
 
-class Score {
-	static Frame frame;
+class Game {
+	Frame[] frames;
 
+	private int finalScore() {
+		int rv = 0;
+		for(Frame f : frames){
+			rv += f.frameScore();
+		}
+
+		return rv;
+	}
+
+	public String toString() {
+		return String.valueOf(finalScore());
+	}
+
+	// separates the string and constructs the frames
+	public Game(String str) {
+		String[] frameStrings = str.split("-");
+		frames = new Frame[10];
+
+		for(int i=0; i < 10; i++){
+			frames[i] = new Frame(frameStrings[i]);
+		}
+	}
+}
+
+
+class Score {
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		String results = in.nextLine();
 
-		frame = new Frame(results);
+		Game game = new Game(results);
 
-		System.out.println("Score is: " + frame);
+		System.out.println("Score is: " + game.toString());
 	}
 }
