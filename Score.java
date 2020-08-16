@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.Arrays;
 
 
 class Frame {
@@ -128,6 +129,13 @@ class Game {
 
 		// keeps track of the previous Frame we created in the loop
 		Frame prev = null;
+
+		// in case there is a '-' between the last frame and the last frame's bonus throw
+		// concatinates all extra entries into the 10th frameString entry
+		while(frameStrings.length > 10){
+			frameStrings[9] = frameStrings[9].concat(frameStrings[10]);
+			frameStrings = Arrays.copyOfRange(frameStrings, 0, 10);
+		}
 
 		for(int i=9; i >= 0; i--){
 			// makes a FinalFrame instance instead at the start of the loop
