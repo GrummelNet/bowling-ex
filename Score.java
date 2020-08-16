@@ -11,10 +11,12 @@ class Frame {
 	// returns the total of the next n throws
 	public int next(int n){
 		int rv = 0;
+		int i = 0;
 		Frame curr = nextFrame;
-		for(int i=0; curr != null && i < n; i++){
-			for(int j=0; j < curr.throwArr.length; j++){
+		while(curr != null && i < n){
+			for(int j=0; j < curr.throwArr.length && i < n; j++){
 				rv += curr.throwArr[j];
+				i++;
 			}
 			curr = curr.nextFrame;
 		}
